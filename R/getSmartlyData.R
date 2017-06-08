@@ -74,7 +74,7 @@ getSmartlyData <- function(start,
         }
         groupby <- paste(groupby, "&meta=account_id%2Ccampaign_id", sep="")
         #build url
-        url <- paste("https://api.smartly.io/v1.0/stats?account_id=",
+        url <- paste("https://stats-api.smartly.io/api/v1.0/stats?account_id=",#old url: "https://api.smartly.io/v1.0/stats?account_id=",
                      accountID,
                      "&stats=",
                      start,
@@ -89,6 +89,6 @@ getSmartlyData <- function(start,
                      "&format=csv&csv_col_separator=;&csv_dec_separator=,&api_token=",
                      apiToken, sep="")
         data <- RCurl::getURL(url)
-        data <- utils::read.csv2(textConnection(data),sep=";",header=T)[-1,]
+        data <- utils::read.csv2(textConnection(data),sep=";",header=T)#[-1,]
         data
 }
